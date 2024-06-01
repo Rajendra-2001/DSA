@@ -42,7 +42,7 @@ bool subsetSumToK(int n, int k, vector<int> &arr)
     dp[i][0] = true;
   }
 
-  // If the first element is less than or equal to k, set dp[0][arr[0]] to true
+  // If the first element is equal to k, set dp[0][arr[0]] to true
   if (arr[0] == k)
   {
     dp[0][arr[0]] = true;
