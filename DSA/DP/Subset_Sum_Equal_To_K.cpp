@@ -35,7 +35,8 @@ bool subsetSumToK(int n, int k, vector<int> &arr)
   // Create a 2D DP array with default values as false
   vector<vector<bool>> dp(n, vector<bool>(k + 1, false));
 
-  // Base case: A sum of 0 can always be achieved with an empty subset
+  // Tabulation
+  //  Base case: A sum of 0 can always be achieved with an empty subset
   for (int i = 0; i < n; ++i)
   {
     dp[i][0] = true;
