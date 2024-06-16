@@ -49,7 +49,38 @@ int countPartitions(int n, int d, vector<int> &arr)
 
   return solve(n - 1, target, arr, dp);
 }
+// Tabulation
+int countPartitions(int n, int d, vector<int> &arr)
+{
+  int totalSum = accumulate(arr.begin(), arr.end(), 0);
 
+  // Check if it's possible to partition the array with the given difference
+  if (totalSum < d || (totalSum - d) % 2 != 0)
+    return 0;
+
+  int target = (totalSum - d) / 2;
+
+  // Initialize dp table with 0
+  vector<vector<int>> dp(n + 1, vector<int>(target + 1, 0));
+  dp[0][0] = 1;
+
+  // Fill the dp table
+  for (int index = 1; index <= n; ++index)
+  {
+    for (int currSum = 0; currSum <= target; ++currSum)
+    {
+      int currSkip = dp[index - 1][currSum];
+      int currTake = 0;
+      if (arr[index - 1] <= currSum)
+      {
+        currTake = dp[index - 1][currSum - arr[index - 1]];
+      }
+      dp[index][currSum] = (currTake + currSkip) % MOD;
+    }
+  }
+
+  return dp[n][target];
+}
 int main()
 {
   vector<int> arr = {1, 2, 3, 4};
