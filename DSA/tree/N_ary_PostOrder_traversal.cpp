@@ -3,6 +3,11 @@ using namespace std;
 
 vector<int> ans;
 
+Node(int _val, vector<Node *> _children)
+{
+  val = _val;
+  children = _children;
+}
 void postorderHelper(Node *root, vector<int> &ans)
 {
   if (!root)
