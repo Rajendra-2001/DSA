@@ -56,7 +56,7 @@ bool isPalindrome(string &s, int i, int j, vector<vector<int>> &dp)
 }
 
 // Function to find the longest palindromic substring using memoization
-string longestPalindrome(string s)
+string longestPalindromeMemo(string s)
 {
   int n = s.length();
   vector<vector<int>> dp(n, vector<int>(n, -1)); // Initialize memoization table
@@ -84,7 +84,7 @@ string longestPalindrome(string s)
 
 // Tabulation
 
-string longestPalindrome(string s)
+string longestPalindromeTab(string s)
 {
   int n = s.length();
   if (n == 0)
@@ -139,7 +139,7 @@ string longestPalindrome(string s)
 int main()
 {
   string s = "babababababaaaaaaaaaad";
-  string result = longestPalindrome(s);
+  string result = longestPalindromeTab(s);
   cout << "Longest palindromic substring: " << result << endl; // Output: "bab" or "aba"
   return 0;
 }
