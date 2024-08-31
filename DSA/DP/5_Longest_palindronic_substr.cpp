@@ -82,6 +82,60 @@ string longestPalindrome(string s)
   return s.substr(start, max_len); // Return the longest palindromic substring
 }
 
+// Tabulation
+
+string longestPalindrome(string s)
+{
+  int n = s.length();
+  if (n == 0)
+    return "";
+
+  vector<vector<bool>> dp(n, vector<bool>(n, false)); // Create a 2D table to store palindromic states
+  int max_len = 1;                                    // Every single character is a palindrome of length 1
+  int start = 0;                                      // Starting index of the longest palindromic substring
+
+  // All substrings of length 1 are palindromes
+  for (int i = 0; i < n; i++)
+  {
+    dp[i][i] = true;
+  }
+
+  // Check for palindromes of length 2
+  for (int i = 0; i < n - 1; i++)
+  {
+    if (s[i] == s[i + 1])
+    {
+      dp[i][i + 1] = true;
+      start = i;
+      max_len = 2;
+    }
+  }
+
+  // Check for palindromes of length 3 and greater
+  for (int len = 3; len <= n; len++)
+  {
+    for (int i = 0; i < n - len + 1; i++)
+    {
+      int j = i + len - 1; // Ending index of the current substring
+
+      // If the current substring is a palindrome
+      if (s[i] == s[j] && dp[i + 1][j - 1])
+      {
+        dp[i][j] = true;
+
+        if (len > max_len)
+        {
+          start = i;
+          max_len = len;
+        }
+      }
+    }
+  }
+
+  // Return the longest palindromic substring
+  return s.substr(start, max_len);
+}
+
 int main()
 {
   string s = "babababababaaaaaaaaaad";
