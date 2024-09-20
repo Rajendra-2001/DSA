@@ -3,11 +3,12 @@ using namespace std;
 
 vector<int> ans;
 
-Node(int _val, vector<Node *> _children)
+struct Node
 {
-  val = _val;
-  children = _children;
-}
+  int val;
+  vector<Node *> children;
+};
+
 void postorderHelper(Node *root, vector<int> &ans)
 {
   if (!root)
