@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> ans;
-
 struct Node
 {
   int val;
@@ -36,12 +34,12 @@ vector<int> postorder(Node *root)
 int main()
 {
   // Create the N-ary tree nodes
-  Node *root = new Node(1);
-  Node *child1 = new Node(3);
-  Node *child2 = new Node(2);
-  Node *child3 = new Node(4);
-  Node *grandchild1 = new Node(5);
-  Node *grandchild2 = new Node(6);
+  Node *root = new Node{1};
+  Node *child1 = new Node{3};
+  Node *child2 = new Node{2};
+  Node *child3 = new Node{4};
+  Node *grandchild1 = new Node{5};
+  Node *grandchild2 = new Node{6};
 
   // Build the tree
   child1->children.push_back(grandchild1);
